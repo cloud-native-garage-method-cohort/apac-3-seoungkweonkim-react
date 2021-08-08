@@ -1,0 +1,59 @@
+[retrieve-yaml] + pwd
+[retrieve-yaml] + echo /workspace
+[retrieve-yaml] /workspace
+[retrieve-yaml] + cd /workspace
+[retrieve-yaml] + mkdir k8s
+[retrieve-yaml] + cd k8s
+[retrieve-yaml] + pwd
+[retrieve-yaml] + echo /workspace/k8s
+[retrieve-yaml] /workspace/k8s
+[retrieve-yaml] + curl https://raw.githubusercontent.com/tektoncd/pipeline/main/examples/v1beta1/taskruns/run-steps-as-non-root.yaml
+[retrieve-yaml]   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[retrieve-yaml]                                  Dload  Upload   Total   Spent    Left  Speed
+[retrieve-yaml]   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   751  100   751    0     0   2802      0 --:--:-- --:--:-- --:--:--  2812
+
+[extract-task] + pwd
+[extract-task] + echo /workspace
+[extract-task] /workspace
+[extract-task] + cd /workspace/k8s
+[extract-task] + pwd
+[extract-task] /workspace/k8s
+[extract-task] + echo /workspace/k8s
+[extract-task] + head -n 24 run-steps-as-non-root.yaml
+
+[swap-image] + pwd
+[swap-image] /workspace
+[swap-image] + echo /workspace
+[swap-image] + cd /workspace/k8s
+[swap-image] + sed 's/ubuntu/quay.io\/ibmgaragecloud\/alpine-curl/g' run-steps-as-non-root-task-only.yaml
+[swap-image] + cat run-steps-as-non-root-alpine-task.yaml
+[swap-image] apiVersion: tekton.dev/v1beta1
+[swap-image] kind: Task
+[swap-image] metadata:
+[swap-image]   name: show-non-root-steps
+[swap-image] spec:
+[swap-image]   steps:
+[swap-image]     # no securityContext specified so will use
+[swap-image]     # securityContext from TaskRun podTemplate
+[swap-image]     - name: show-user-1001
+[swap-image]       image: quay.io/ibmgaragecloud/alpine-curl
+[swap-image]       command:
+[swap-image]         - ps
+[swap-image]       args:
+[swap-image]         - "aux"
+[swap-image]     # securityContext specified so will run as
+[swap-image]     # user 2000 instead of 1001
+[swap-image]     - name: show-user-2000
+[swap-image]       image: quay.io/ibmgaragecloud/alpine-curl
+[swap-image]       command:
+[swap-image]         - ps
+[swap-image]       args:
+[swap-image]         - "aux"
+[swap-image]       securityContext:
+[swap-image]         runAsUser: 2000
+
+
+
+
+
+
