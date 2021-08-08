@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: tekton-taskrun-run-
+  namespace: tekton-sk-kim
+spec:
+  resources: {}
+  taskRef:
+    name: tekton-task-assignment
+
+
