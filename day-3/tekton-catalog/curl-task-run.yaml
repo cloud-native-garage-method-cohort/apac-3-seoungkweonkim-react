@@ -8,5 +8,18 @@ spec:
       image: quay.io/ibmgaragecloud/alpine-curl
       resources: {}
       script: |
-        curl https://dog-facts-api.herokuapp.com/api/v1/resources/dogs
+        cd /workspace
+        mkdir dogs-cats 
+        cd dogs-cats
+        curl https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=2 > dogs-fact.json
+        cat dogs-fact.json
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: sk-tekton-dog-facts-run-
+  namespace: seoungkweon-tekton-catalog-assignment
+spec:
+  taskRef:
+    name: sk-tekton-dog-facts
 
