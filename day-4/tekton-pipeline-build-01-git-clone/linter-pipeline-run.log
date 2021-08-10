@@ -1,0 +1,39 @@
+[fetch-repository : clone] + CHECKOUT_DIR=/workspace/output/
+[fetch-repository : clone] + [[ true == \t\r\u\e ]]
+[fetch-repository : clone] + cleandir
+[fetch-repository : clone] + [[ -d /workspace/output/ ]]
+[fetch-repository : clone] + rm -rf /workspace/output//lost+found
+[fetch-repository : clone] + rm -rf '/workspace/output//.[!.]*'
+[fetch-repository : clone] + rm -rf '/workspace/output//..?*'
+[fetch-repository : clone] + test -z ''
+[fetch-repository : clone] + test -z ''
+[fetch-repository : clone] + test -z ''
+[fetch-repository : clone] + /ko-app/git-init -url https://github.com/upslopeio/lint-markdown-files.git -revision main -refspec '' -path /workspace/output/ -sslVerify=true -submodules=true -depth 1
+[fetch-repository : clone] {"level":"info","ts":1628597275.4149046,"caller":"git/git.go:157","msg":"Successfully cloned https://github.com/upslopeio/lint-markdown-files.git @ b57d9c42aca9e041100fbca48e72d269b5d64d21 (grafted, HEAD, origin/main) in path /workspace/output/"}
+[fetch-repository : clone] {"level":"info","ts":1628597275.7494836,"caller":"git/git.go:198","msg":"Successfully initialized and updated submodules in path /workspace/output/"}
+[fetch-repository : clone] + cd /workspace/output/
+[fetch-repository : clone] ++ git rev-parse HEAD
+[fetch-repository : clone] + RESULT_SHA=b57d9c42aca9e041100fbca48e72d269b5d64d21
+[fetch-repository : clone] + EXIT_CODE=0
+[fetch-repository : clone] + '[' 0 '!=' 0 ']'
+[fetch-repository : clone] + echo -n b57d9c42aca9e041100fbca48e72d269b5d64d21
+[fetch-repository : clone] + echo -n https://github.com/upslopeio/lint-markdown-files.git
+
+[md-lint-run : lint-markdown-files] ./SECOND_EXAMPLE.md:18: MD009 Trailing spaces
+[md-lint-run : lint-markdown-files] ./SECOND_EXAMPLE.md:3: MD013 Line length
+[md-lint-run : lint-markdown-files] ./SECOND_EXAMPLE.md:4: MD013 Line length
+[md-lint-run : lint-markdown-files] ./SECOND_EXAMPLE.md:8: MD013 Line length
+[md-lint-run : lint-markdown-files] ./SECOND_EXAMPLE.md:12: MD013 Line length
+[md-lint-run : lint-markdown-files] ./SECOND_EXAMPLE.md:16: MD013 Line length
+[md-lint-run : lint-markdown-files] ./SECOND_EXAMPLE.md:18: MD013 Line length
+[md-lint-run : lint-markdown-files] ./SECOND_EXAMPLE.md:21: MD013 Line length
+[md-lint-run : lint-markdown-files] ./README.md:3: MD013 Line length
+[md-lint-run : lint-markdown-files] ./README.md:4: MD013 Line length
+[md-lint-run : lint-markdown-files] ./README.md:5: MD013 Line length
+[md-lint-run : lint-markdown-files] ./README.md:7: MD013 Line length
+[md-lint-run : lint-markdown-files] ./README.md:9: MD013 Line length
+[md-lint-run : lint-markdown-files] ./README.md:11: MD013 Line length
+[md-lint-run : lint-markdown-files] ./README.md:13: MD013 Line length
+[md-lint-run : lint-markdown-files] 
+[md-lint-run : lint-markdown-files] A detailed description of the rules is available at https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md
+

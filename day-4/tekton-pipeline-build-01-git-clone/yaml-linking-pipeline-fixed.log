@@ -1,0 +1,28 @@
+[fetch-repository : clone] + CHECKOUT_DIR=/workspace/output/
+[fetch-repository : clone] + [[ true == \t\r\u\e ]]
+[fetch-repository : clone] + cleandir
+[fetch-repository : clone] + [[ -d /workspace/output/ ]]
+[fetch-repository : clone] + rm -rf /workspace/output//lost+found
+[fetch-repository : clone] + rm -rf '/workspace/output//.[!.]*'
+[fetch-repository : clone] + rm -rf '/workspace/output//..?*'
+[fetch-repository : clone] + test -z ''
+[fetch-repository : clone] + test -z ''
+[fetch-repository : clone] + test -z ''
+[fetch-repository : clone] + /ko-app/git-init -url https://github.com/cloud-native-garage-method-cohort/seoungkweon-public-yaml-linter.git -revision '' -refspec '' -path /workspace/output/ -sslVerify=true -submodules=true -depth 1
+[fetch-repository : clone] {"level":"info","ts":1628596591.9768982,"caller":"git/git.go:157","msg":"Successfully cloned https://github.com/cloud-native-garage-method-cohort/seoungkweon-public-yaml-linter.git @ 55dc4ec10ec54377993d040e94ed3412a882da34 (grafted, HEAD) in path /workspace/output/"}
+[fetch-repository : clone] {"level":"info","ts":1628596592.296233,"caller":"git/git.go:198","msg":"Successfully initialized and updated submodules in path /workspace/output/"}
+[fetch-repository : clone] + cd /workspace/output/
+[fetch-repository : clone] ++ git rev-parse HEAD
+[fetch-repository : clone] + RESULT_SHA=55dc4ec10ec54377993d040e94ed3412a882da34
+[fetch-repository : clone] + EXIT_CODE=0
+[fetch-repository : clone] + '[' 0 '!=' 0 ']'
+[fetch-repository : clone] + echo -n 55dc4ec10ec54377993d040e94ed3412a882da34
+[fetch-repository : clone] + echo -n https://github.com/cloud-native-garage-method-cohort/seoungkweon-public-yaml-linter.git
+
+[yaml-lint-run : lint-yaml-files] ./yaml-linter-wrong.yaml
+[yaml-lint-run : lint-yaml-files]   1:1       warning  missing document start "---"  (document-start)
+[yaml-lint-run : lint-yaml-files] 
+[yaml-lint-run : lint-yaml-files] ./yaml-linter-test.yaml
+[yaml-lint-run : lint-yaml-files]   1:1       warning  missing document start "---"  (document-start)
+[yaml-lint-run : lint-yaml-files] 
+

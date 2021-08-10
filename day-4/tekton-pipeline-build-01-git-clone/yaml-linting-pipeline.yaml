@@ -1,0 +1,46 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: yaml-linter-pipeline
+spec:
+  workspaces:
+    - name: shared-workspace
+  tasks:
+    - name: fetch-repository
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: shared-workspace
+      params:
+        - name: url
+          value: https://github.com/cloud-native-garage-method-cohort/seoungkweon-public-yaml-linter.git
+    - name: yaml-lint-run
+      taskRef:
+        name: yaml-lint
+      runAfter:
+        - fetch-repository
+      workspaces:
+        - name: shared-workspace
+          workspace: shared-workspace
+      params:
+        - name: args
+          value: ["."]
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: yaml-linter-pipeline-run
+spec:
+  pipelineRef:
+    name: yaml-linter-pipeline
+  workspaces:
+    - name: shared-workspace
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
