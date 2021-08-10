@@ -1,0 +1,15 @@
+apiVersion: v1
+imagePullSecrets:
+- name: build-bot-dockercfg-q5z42
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2021-08-10T15:41:01Z"
+  name: build-bot
+  namespace: seoung-assignment-day-4
+  resourceVersion: "6970534"
+  selfLink: /api/v1/namespaces/seoung-assignment-day-4/serviceaccounts/build-bot
+  uid: e84d7c40-f51d-4eed-a44b-1a85053988a8
+secrets:
+- name: build-bot-token-t66pv
+- name: build-bot-dockercfg-q5z42
+- name: quay-io-credentials
