@@ -2,4 +2,4 @@
 ==> Tekton Triggers is a Tekton component that allows you to detect and extract information from events from a variety of sources and deterministically instantiate and execute TaskRuns and PipelineRuns based on that information.
 ==> Tekton Pipeline
 1. Since we have not yet added GitHub commit hooks, how did you test your Trigger?
-==> curl ???
+==> curl ????
